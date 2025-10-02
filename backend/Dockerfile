@@ -11,6 +11,7 @@ WORKDIR /app
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     postgresql-client \
+    netcat-openbsd \
     gcc \
     python3-dev \
     musl-dev \
@@ -22,6 +23,11 @@ COPY requirements.txt /app/
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
+# Copy entrypoint scripts
+COPY entrypoint.sh /app/entrypoint.sh
+COPY entrypoint-celery.sh /app/entrypoint-celery.sh
+RUN chmod +x /app/entrypoint.sh /app/entrypoint-celery.sh
+
 # Copy project files
 COPY . /app/
 
@@ -31,5 +37,8 @@ RUN mkdir -p /app/staticfiles /app/media
 # Expose port
 EXPOSE 8000
 
-# Run the application
+# Set entrypoint
+ENTRYPOINT ["/app/entrypoint.sh"]
+
+# Default command
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

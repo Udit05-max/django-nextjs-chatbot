@@ -41,11 +41,11 @@ AUTHENTICATION_BACKENDS = (
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "chatbotdb",
-        "USER": config("DB_USER"),
-        "PASSWORD": config("DB_PASSWORD"),
-        "HOST": "localhost",
-        "PORT": config("DB_PORT"),
+        "NAME": config("DB_NAME", default="chatbotdb"),
+        "USER": config("DB_USER", default="chatbot_user"),
+        "PASSWORD": config("DB_PASSWORD", default="chatbot_pass"),
+        "HOST": config("DB_HOST", default="localhost"),
+        "PORT": config("DB_PORT", default="5432"),
         "OPTIONS": {
             "sslmode": "disable",  # Disables SSL for local development
         },
@@ -196,12 +196,11 @@ CORS_ALLOW_HEADERS = [
 ]
 
 # Redis and Celery Configuration
-REDIS_HOST = "localhost"  # or '127.0.0.1'
-REDIS_PORT = 6379
+REDIS_URL = config("REDIS_URL", default="redis://localhost:6379/0")
 
 # Celery Settings
-CELERY_BROKER_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}/1"
-CELERY_RESULT_BACKEND = f"redis://{REDIS_HOST}:{REDIS_PORT}/2"
+CELERY_BROKER_URL = config("CELERY_BROKER_URL", default="redis://localhost:6379/1")
+CELERY_RESULT_BACKEND = config("CELERY_RESULT_BACKEND", default="redis://localhost:6379/2")
 
 # Celery Configuration Options
 CELERY_TASK_TRACK_STARTED = True
@@ -229,7 +228,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [(REDIS_HOST, REDIS_PORT)],
+            "hosts": [REDIS_URL],
             "capacity": 1500,
             "expiry": 20,
         },
@@ -240,7 +239,7 @@ CHANNEL_LAYERS = {
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": f"redis://{REDIS_HOST}:{REDIS_PORT}/3",
+        "LOCATION": REDIS_URL,
         "OPTIONS": {
             "db": "1",
             "pool_class": "redis.connection.ConnectionPool",
