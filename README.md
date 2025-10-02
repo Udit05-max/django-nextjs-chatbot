@@ -34,7 +34,7 @@ This is a **learning-focused repository** designed to teach developers how to in
 
 **New to AI chatbots?** Perfect! This tutorial is designed for you:
 
-1. 🎥 **[Watch the YouTube Tutorial](https://youtube.com/@aparsoft)** - Follow along step-by-step
+1. 🎥 **[Watch the YouTube Tutorial](https://youtube.com/@aparsoft-ai)** - Follow along step-by-step
 2. 💻 **Clone this repo** - Get the starter code
 3. 🛠️ **Build with us** - Learn by doing
 4. 🚀 **Deploy your chatbot** - See it live!
@@ -58,7 +58,7 @@ We're an AI solutions company based in **Bengaluru, India**, and we're passionat
 
 We're building in public and teaching everything we know:
 
-- **YouTube:** [@aparsoft](https://youtube.com/@aparsoft) - **Weekly tutorials, live coding, and beginner-friendly content**
+- **YouTube:** [@aparsoft-ai](https://youtube.com/@aparsoft-ai) - **Weekly tutorials, live coding, and beginner-friendly content**
 - **LinkedIn:** [/company/aparsoft](https://linkedin.com/company/aparsoft) - Articles and tech insights
 - **GitHub:** [@aparsoft](https://github.com/aparsoft) - Open-source learning projects
 - **Twitter/X:** [@aparsoft](https://twitter.com/aparsoft) - Quick tips and dev updates
@@ -314,14 +314,14 @@ This repository is the companion code for our **beginner-friendly video tutorial
 - ✅ **Django focus** - For backend devs learning AI
 - ✅ **Community support** - Active Discord and discussions
 
-**[→ Start Learning on YouTube](https://youtube.com/@aparsoft)** - First video teaches absolute basics!
+**[→ Start Learning on YouTube](https://youtube.com/@aparsoft-ai)** - First video teaches absolute basics!
 
 ---
 
 ## 📞 Get Help & Connect
 
 ### 🎓 Learning & Community
-- **YouTube:** [@aparsoft](https://youtube.com/@aparsoft) - Main tutorial channel
+- **YouTube:** [@aparsoft-ai](https://youtube.com/@aparsoft-ai) - Main tutorial channel
 - **Discord:** [Join our community](https://aparsoft.com/discord) - Get help from fellow learners
 - **GitHub Discussions:** Ask questions about the code
 - **LinkedIn:** [/company/aparsoft](https://linkedin.com/company/aparsoft) - Articles and tips
