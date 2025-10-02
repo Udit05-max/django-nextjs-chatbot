@@ -34,6 +34,7 @@ services:
       - "8000:8000"
     environment:
       - DEBUG=1
+      - DJANGO_SETTINGS_MODULE=config.settings.development
       - SECRET_KEY=dev-secret-key-change-in-production
       - DATABASE_URL=postgresql://chatbot_user:chatbot_pass@db:5432/chatbot_db
       - PGVECTOR_CONNECTION_STRING=postgresql://chatbot_user:chatbot_pass@db:5432/chatbot_db
@@ -46,6 +47,7 @@ services:
       - ALLOWED_HOSTS=localhost,127.0.0.1,backend
       - CORS_ALLOWED_ORIGINS=http://localhost:3000,http://frontend:3000
       - OPENAI_API_KEY=${OPENAI_API_KEY:-your-openai-api-key-here}
+      - TAVILY_API_KEY=${TAVILY_API_KEY:-}
       - REDIS_URL=redis://redis:6379/0
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
@@ -83,7 +85,7 @@ services:
     image: redis:7-alpine
     container_name: chatbot-redis
     ports:
-      - "6379:6379"
+      - "6380:6379"  # Host:Container - avoiding conflict with local Redis
     volumes:
       - redis_data:/data
     networks:
@@ -105,6 +107,7 @@ services:
       - ./backend:/app
     environment:
       - DEBUG=1
+      - DJANGO_SETTINGS_MODULE=config.settings.development
       - SECRET_KEY=dev-secret-key-change-in-production
       - DATABASE_URL=postgresql://chatbot_user:chatbot_pass@db:5432/chatbot_db
       - PGVECTOR_CONNECTION_STRING=postgresql://chatbot_user:chatbot_pass@db:5432/chatbot_db
@@ -118,6 +121,7 @@ services:
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
       - OPENAI_API_KEY=${OPENAI_API_KEY:-your-openai-api-key-here}
+      - TAVILY_API_KEY=${TAVILY_API_KEY:-}
     depends_on:
       db:
         condition: service_healthy
@@ -137,6 +141,7 @@ services:
       - ./backend:/app
     environment:
       - DEBUG=1
+      - DJANGO_SETTINGS_MODULE=config.settings.development
       - SECRET_KEY=dev-secret-key-change-in-production
       - DATABASE_URL=postgresql://chatbot_user:chatbot_pass@db:5432/chatbot_db
       - PGVECTOR_CONNECTION_STRING=postgresql://chatbot_user:chatbot_pass@db:5432/chatbot_db
@@ -150,6 +155,7 @@ services:
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
       - OPENAI_API_KEY=${OPENAI_API_KEY:-your-openai-api-key-here}
+      - TAVILY_API_KEY=${TAVILY_API_KEY:-}
     depends_on:
       db:
         condition: service_healthy
