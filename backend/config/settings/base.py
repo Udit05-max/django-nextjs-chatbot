@@ -47,7 +47,9 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    # "chatbot",
+    "accounts",
+    "chatbot",
+    "core",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

@@ -45,7 +45,7 @@ urlpatterns: URLPatternsList = [
     # Admin interface
     path(f"{settings.ADMIN_URL}", admin.site.urls),
     # API v1 endpoints
-    # path("api/v1/", include((api_v1_patterns, "v1"), namespace="api_v1")),
+    path("api/v1/", include((api_v1_patterns, "v1"), namespace="api_v1")),
     # Future API versions can be added here
     # path('api/v2/',
     #      include((api_v2_patterns, 'v2'),

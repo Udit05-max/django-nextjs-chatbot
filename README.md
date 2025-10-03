@@ -6,8 +6,8 @@
 [![Website](https://img.shields.io/badge/Website-aparsoft.com-green?style=flat)](https://aparsoft.com)
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)
-![Django](https://img.shields.io/badge/Django-4.2-green?logo=django)
-![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)
+![Django](https://img.shields.io/badge/Django-5.2-green?logo=django)
+![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-blue?logo=postgresql)
 ![LangChain](https://img.shields.io/badge/LangChain-Latest-green)
 
