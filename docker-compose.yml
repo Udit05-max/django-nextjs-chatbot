@@ -59,6 +59,21 @@ services:
         condition: service_healthy
     networks:
       - chatbot-network
+    develop:
+      watch:
+        - action: sync
+          path: ./backend
+          target: /app
+          ignore:
+            - __pycache__/
+            - "*.pyc"
+            - "*.pyo"
+            - "*.pyd"
+            - .pytest_cache/
+            - .git/
+        - action: sync+restart
+          path: ./backend/requirements.txt
+          target: /app/requirements.txt
 
   # Next.js Frontend
   frontend:
@@ -80,6 +95,18 @@ services:
       - backend
     networks:
       - chatbot-network
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend
+          target: /app
+          ignore:
+            - node_modules/
+            - .next/
+            - .git/
+        - action: rebuild
+          path: ./frontend/package.json
+          target: /app/package.json
 
   # Redis Cache
   redis:
@@ -134,6 +161,18 @@ services:
         condition: service_started
     networks:
       - chatbot-network
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./backend
+          target: /app
+          ignore:
+            - __pycache__/
+            - "*.pyc"
+            - "*.pyo"
+            - "*.pyd"
+            - .pytest_cache/
+            - .git/
 
   # Celery Beat (Scheduler)
   celery-beat:
@@ -172,6 +211,18 @@ services:
         condition: service_started
     networks:
       - chatbot-network
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./backend
+          target: /app
+          ignore:
+            - __pycache__/
+            - "*.pyc"
+            - "*.pyo"
+            - "*.pyd"
+            - .pytest_cache/
+            - .git/
 
 networks:
   chatbot-network:

@@ -1,18 +1,13 @@
 """
 Django admin configuration for CustomUser and UserContact models.
-Provides comprehensive admin interface for user management with proper
-organization of fields, filters, and search capabilities.
+Provides comprehensive admin interface for user management.
 """
 
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.utils.html import format_html
-from django.urls import reverse
-from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.forms import Textarea
-import json
 
 from ..models.custom_user import CustomUser, UserContact
 
@@ -72,13 +67,10 @@ class CustomUserAdmin(BaseUserAdmin):
         "username",
         "get_full_name_display",
         "role",
-        "subscription_tier",
-        "role_status",
         "email_verified",
         "is_active",
         "last_active",
         "date_joined",
-        "get_profile_link",
     )
 
     list_display_links = ("email", "username")
@@ -86,8 +78,6 @@ class CustomUserAdmin(BaseUserAdmin):
     # List filters
     list_filter = (
         "role",
-        "subscription_tier",
-        "role_status",
         "email_verified",
         "phone_verified",
         "two_factor_enabled",
@@ -104,7 +94,6 @@ class CustomUserAdmin(BaseUserAdmin):
         "username",
         "first_name",
         "last_name",
-        "client_organization__name",
     )
 
     # Ordering
@@ -120,8 +109,6 @@ class CustomUserAdmin(BaseUserAdmin):
         "date_joined",
         "last_login",
         "login_count",
-        "get_profile_link",
-        "get_assigned_projects_count",
     )
 
     # Fieldset organization
@@ -143,14 +130,18 @@ class CustomUserAdmin(BaseUserAdmin):
             {
                 "fields": (
                     "role",
-                    "role_status",
-                    "subscription_tier",
                     "is_active",
                     "is_staff",
                     "is_superuser",
                     "groups",
                     "user_permissions",
                 )
+            },
+        ),
+        (
+            _("Profile"),
+            {
+                "fields": ("profile_picture",),
             },
         ),
         (
@@ -161,16 +152,6 @@ class CustomUserAdmin(BaseUserAdmin):
                     "phone_verified",
                     "two_factor_enabled",
                     "last_password_change",
-                ),
-                "classes": ("collapse",),
-            },
-        ),
-        (
-            _("Technical Skills"),
-            {
-                "fields": (
-                    "technical_skills",
-                    "specializations",
                 ),
                 "classes": ("collapse",),
             },
@@ -192,24 +173,6 @@ class CustomUserAdmin(BaseUserAdmin):
                     "last_login",
                     "account_age_days",
                 ),
-                "classes": ("collapse",),
-            },
-        ),
-        (
-            _("Project & Organization"),
-            {
-                "fields": (
-                    "client_organization",
-                    "assigned_projects",
-                    "get_assigned_projects_count",
-                ),
-                "classes": ("collapse",),
-            },
-        ),
-        (
-            _("Profile Links"),
-            {
-                "fields": ("get_profile_link",),
                 "classes": ("collapse",),
             },
         ),
@@ -235,11 +198,7 @@ class CustomUserAdmin(BaseUserAdmin):
             _("Role Assignment"),
             {
                 "classes": ("wide",),
-                "fields": (
-                    "role",
-                    "subscription_tier",
-                    "role_status",
-                ),
+                "fields": ("role",),
             },
         ),
         (
@@ -260,17 +219,13 @@ class CustomUserAdmin(BaseUserAdmin):
     }
 
     # Filter horizontal for many-to-many fields
-    filter_horizontal = ("groups", "user_permissions", "assigned_projects")
+    filter_horizontal = ("groups", "user_permissions")
 
     # Actions
     actions = [
         "activate_users",
         "deactivate_users",
         "verify_emails",
-        "approve_role_status",
-        "upgrade_to_professional",
-        "upgrade_to_business",
-        "upgrade_to_enterprise",
     ]
 
     def get_full_name_display(self, obj):
@@ -278,30 +233,6 @@ class CustomUserAdmin(BaseUserAdmin):
         return obj.full_name
 
     get_full_name_display.short_description = _("Full Name")
-
-    def get_profile_link(self, obj):
-        """Generate links to role-specific profiles."""
-        profile = obj.get_role_profile()
-        if not profile:
-            return _("No profile")
-
-        if obj.role in ["developer", "senior_developer"]:
-            url = reverse("admin:accounts_developerprofile_change", args=[profile.id])
-            return format_html('<a href="{}">View Developer Profile</a>', url)
-        elif obj.role == "client":
-            url = reverse("admin:accounts_clientprofile_change", args=[profile.id])
-            return format_html('<a href="{}">View Client Profile</a>', url)
-        # Add other role profile links as needed
-
-        return _("View Profile")
-
-    get_profile_link.short_description = _("Profile")
-
-    def get_assigned_projects_count(self, obj):
-        """Get count of assigned projects."""
-        return obj.assigned_projects.count()
-
-    get_assigned_projects_count.short_description = _("Assigned Projects")
 
     def account_age_days(self, obj):
         """Display account age in days."""
@@ -332,36 +263,6 @@ class CustomUserAdmin(BaseUserAdmin):
         )
 
     verify_emails.short_description = _("Verify user emails")
-
-    def approve_role_status(self, request, queryset):
-        """Approve pending role status."""
-        updated = queryset.filter(role_status="pending").update(role_status="approved")
-        self.message_user(
-            request, f"{updated} user role(s) were successfully approved."
-        )
-
-    approve_role_status.short_description = _("Approve pending role status")
-
-    def upgrade_to_professional(self, request, queryset):
-        """Upgrade to professional tier."""
-        updated = queryset.update(subscription_tier="professional")
-        self.message_user(request, f"{updated} user(s) upgraded to Professional tier.")
-
-    upgrade_to_professional.short_description = _("Upgrade to Professional")
-
-    def upgrade_to_business(self, request, queryset):
-        """Upgrade to business tier."""
-        updated = queryset.update(subscription_tier="business")
-        self.message_user(request, f"{updated} user(s) upgraded to Business tier.")
-
-    upgrade_to_business.short_description = _("Upgrade to Business")
-
-    def upgrade_to_enterprise(self, request, queryset):
-        """Upgrade to enterprise tier."""
-        updated = queryset.update(subscription_tier="enterprise")
-        self.message_user(request, f"{updated} user(s) upgraded to Enterprise tier.")
-
-    upgrade_to_enterprise.short_description = _("Upgrade to Enterprise")
 
 
 @admin.register(UserContact)
