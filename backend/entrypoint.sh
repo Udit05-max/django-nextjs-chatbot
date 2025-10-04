@@ -12,6 +12,10 @@ while ! nc -z $DB_HOST $DB_PORT; do
 done
 echo "✅ PostgreSQL is ready!"
 
+# Create migrations if they don't exist
+echo "🔧 Creating migrations..."
+python manage.py makemigrations --noinput || echo "ℹ️  No new migrations to create"
+
 # Run migrations
 echo "📦 Running database migrations..."
 python manage.py migrate --noinput
